@@ -2,7 +2,7 @@
 
 This repository contains reusable frontend assets such as CSS and JavaScript files (both minified and unminified), which can be used via a public CDN like **jsDelivr**.
 
-## 📁 Folder Structure
+## 📁 Folder Structure 
 
 ```
 assets/
@@ -23,13 +23,13 @@ assets/
 
 ### Versioned (Recommended):
 ```
-https://cdn.jsdelivr.net/gh/<your-username>/assets@v1.0.0/css/my-style.min.css
-https://cdn.jsdelivr.net/gh/<your-username>/assets@v1.0.0/js/utils.min.js
+https://cdn.jsdelivr.net/gh/njbm/assets@v1.0.0/css/my-style.min.css
+https://cdn.jsdelivr.net/gh/njbm/assets@v1.0.0/js/utils.min.js
 ```
 
 ### Latest (Not recommended for production):
 ```
-https://cdn.jsdelivr.net/gh/<your-username>/assets/css/my-style.min.css
+https://cdn.jsdelivr.net/gh/njbm/assets/css/my-style.min.css
 ```
 
 ## 🔖 Steps to Publish
@@ -48,4 +48,4 @@ https://cdn.jsdelivr.net/gh/<your-username>/assets/css/my-style.min.css
 ## 👨‍💻 Author
 
 **Jaber Masud**  
-[GitHub](https://github.com/masud9900)
+[GitHub](https://github.com/njbm)
