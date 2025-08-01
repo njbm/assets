@@ -1,51 +1,122 @@
-# 📦 Assets CDN Repository
+# 📦 njbm/assets — Universal Frontend Assets CDN
 
-This repository contains reusable frontend assets such as CSS and JavaScript files (both minified and unminified), which can be used via a public CDN like **jsDelivr**.
+A centralized repository of reusable frontend assets (JavaScript, CSS, images, fonts, icons, and plugins), published and distributed via [jsDelivr](https://www.jsdelivr.com/) CDN for easy use in any web project.
 
-## 📁 Folder Structure 
+---
+
+## 🚀 Quick Start (CDN Usage)
+
+**Add any asset to your project in seconds:**
+
+**JavaScript (versioned, recommended):**
+```html
+<script src="https://cdn.jsdelivr.net/gh/njbm/assets@1.0.2/js/form-submit-lock.min.js"></script>
+```
+
+**CSS (versioned):**
+```html
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/njbm/assets@1.0.2/css/my-styles.min.css">
+```
+
+**Latest (not recommended for production):**
+```html
+<script src="https://cdn.jsdelivr.net/gh/njbm/assets/js/form-submit-lock.min.js"></script>
+```
+
+---
+
+## 🧮 Calculator Widget (Example)
+
+**Add a robust calculator to your site:**
+```html
+<div id="my-calculator"></div>
+<script src="https://cdn.jsdelivr.net/gh/njbm/assets@1.0.2/calculator/robust-calculator.js"></script>
+<script>
+  RobustCalculator.init('#my-calculator', { theme: "dark", accent: "#e17055" });
+</script>
+```
+
+**Or the latest:**
+```html
+<script src="https://cdn.jsdelivr.net/gh/njbm/assets/calculator/robust-calculator.js"></script>
+```
+
+---
+
+## 📂 Repository Structure
 
 ```
 assets/
-├── css/
-│   ├── my-style.css
-│   ├── my-style.min.css
-├── js/
-│   ├── utils.js
-│   ├── utils.min.js
-├── plugins/
-│   └── swiper/
-│       ├── swiper.css
-│       ├── swiper.min.css
-│       └── swiper.min.js
+  calculator/
+    robust-calculator.js
+    robust-calculator.min.js
+    calculator-theme.css
+    icons/
+  js/
+    form-submit-lock.js
+    form-submit-lock.min.js
+  css/
+    my-styles.css
+    my-styles.min.css
+  icons/
+    logo.svg
+    github.svg
+  plugins/
+    <your-plugin-files>
+README.md
 ```
 
-## 🚀 How to Use via jsDelivr CDN
+---
 
-### Versioned (Recommended):
-```
-https://cdn.jsdelivr.net/gh/njbm/assets@v1.0.0/css/my-style.min.css
-https://cdn.jsdelivr.net/gh/njbm/assets@v1.0.0/js/utils.min.js
-```
+## 🔖 Publishing & Versioning
 
-### Latest (Not recommended for production):
-```
-https://cdn.jsdelivr.net/gh/njbm/assets/css/my-style.min.css
-```
+1. **Push changes** to `main`.
+2. **Create a GitHub Release** with a semantic version tag (e.g. `v1.0.2`).
+3. **Use the versioned CDN link** for stable production use.
 
-## 🔖 Steps to Publish
+*Tip: Always use versioned links in production for stability!*
 
-1. Push changes to the repository.
-2. Create a GitHub Release with tag (e.g. `v1.0.0`).
-3. Use the CDN link with version.
+---
 
 ## ✅ Best Practices
 
-- Keep minified and unminified versions.
-- Use semantic versioning in releases.
-- Organize files into relevant folders.
-- Update this README with usage instructions and version info.
+- Always keep both minified (`.min.js`, `.min.css`) and unminified versions.
+- Use semantic versioning (`vX.Y.Z`) for releases and CDN tags.
+- Organize assets into clear folders by type or project.
+- Update this README with new asset usage and version info.
 
-## 👨‍💻 Author
+---
+
+## 📝 Adding or Updating Assets
+
+- Place new files in the appropriate folder (e.g. `/js`, `/css`, `/calculator`, `/plugins`).
+- For major updates, increment the version and release a new tag.
+- Update usage examples in the README if needed.
+
+---
+
+## ℹ️ More Examples
+
+**Icon CDN:**
+```html
+<img src="https://cdn.jsdelivr.net/gh/njbm/assets/icons/logo.svg" alt="Logo">
+
+<img src="https://cdn.jsdelivr.net/gh/njbm/assets@1.0.2/icons/logo.svg" alt="Logo">
+```
+
+**Plugin CDN:**
+```html
+<script src="https://cdn.jsdelivr.net/gh/njbm/assets@1.0.2/plugins/your-plugin.min.js"></script>
+```
+
+---
+
+## 👨‍💻 Maintainer
 
 **Jaber Masud**  
-[GitHub](https://github.com/njbm)
+[GitHub](https://github.com/njbm)  
+[Blog](https://jaber.netlify.app)
+
+---
+
+> _Happy coding! Use, share, and contribute to make web development faster and easier for everyone._
