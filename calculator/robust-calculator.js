@@ -12,6 +12,7 @@
         style.textContent = `
 :root {
   --rcalc-accent: ${accent};
+  --input-color:#000;
   --rcalc-bg: #fff;
   --rcalc-fg: #222;
   --rcalc-btn-bg: #e4e7ed;
@@ -20,6 +21,7 @@
   --rcalc-btn-special-fg: #fff;
 }
 body.rcalc-dark, .rcalc-dark {
+  --input-color:#f5f6fa;
   --rcalc-bg: #222;
   --rcalc-fg: #f5f6fa;
   --rcalc-btn-bg: #34495e;
@@ -50,7 +52,7 @@ body.rcalc-dark, .rcalc-dark {
   margin-bottom: 1rem;
   padding: 0 14px;
   background: #f9fafb;
-  color: var(--rcalc-fg);
+  color: var(--input-color);
   text-align: right;
   letter-spacing: 1px;
 }

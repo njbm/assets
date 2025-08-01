@@ -10,7 +10,7 @@ A centralized repository of reusable frontend assets (JavaScript, CSS, images, f
 
 **JavaScript (versioned, recommended):**
 ```html
-<script src="https://cdn.jsdelivr.net/gh/njbm/assets@1.0.2/js/form-submit-lock.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/njbm/assets@1.1.1/js/form-submit-lock.min.js"></script>
 ```
 
 **CSS (versioned):**
@@ -30,15 +30,16 @@ A centralized repository of reusable frontend assets (JavaScript, CSS, images, f
 **Add a robust calculator to your site:**
 ```html
 <div id="my-calculator"></div>
-<script src="https://cdn.jsdelivr.net/gh/njbm/assets@1.0.2/calculator/robust-calculator.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/njbm/assets/calculator/robust-calculator.js"></script>
+
 <script>
   RobustCalculator.init('#my-calculator', { theme: "dark", accent: "#e17055" });
 </script>
 ```
 
-**Or the latest:**
+**Or the versioned:**
 ```html
-<script src="https://cdn.jsdelivr.net/gh/njbm/assets/calculator/robust-calculator.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/njbm/assets@1.1.1/calculator/robust-calculator.js"></script>
 ```
 
 ---
@@ -68,40 +69,15 @@ README.md
 
 ---
 
-## 🔖 Publishing & Versioning
 
-1. **Push changes** to `main`.
-2. **Create a GitHub Release** with a semantic version tag (e.g. `v1.0.2`).
-3. **Use the versioned CDN link** for stable production use.
-
-*Tip: Always use versioned links in production for stability!*
-
----
-
-## ✅ Best Practices
-
-- Always keep both minified (`.min.js`, `.min.css`) and unminified versions.
-- Use semantic versioning (`vX.Y.Z`) for releases and CDN tags.
-- Organize assets into clear folders by type or project.
-- Update this README with new asset usage and version info.
-
----
-
-## 📝 Adding or Updating Assets
-
-- Place new files in the appropriate folder (e.g. `/js`, `/css`, `/calculator`, `/plugins`).
-- For major updates, increment the version and release a new tag.
-- Update usage examples in the README if needed.
-
----
 
 ## ℹ️ More Examples
 
-**Icon CDN:**
+**Img CDN:**
 ```html
-<img src="https://cdn.jsdelivr.net/gh/njbm/assets/icons/logo.svg" alt="Logo">
+<img src="https://cdn.jsdelivr.net/gh/njbm/assets/img/logo.png" alt="Logo">
 
-<img src="https://cdn.jsdelivr.net/gh/njbm/assets@1.0.2/icons/logo.svg" alt="Logo">
+<img src="https://cdn.jsdelivr.net/gh/njbm/assets@1.1.1/img/logo.svg" alt="Logo">
 ```
 
 **Plugin CDN:**
