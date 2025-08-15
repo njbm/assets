@@ -3,7 +3,6 @@
 A centralized repository of reusable frontend assets (JavaScript, CSS, images, fonts, icons, and plugins), published and distributed via [jsDelivr](https://www.jsdelivr.com/) CDN for easy use in any web project.
 
 ---
-
 ## 🚀 Quick Start (CDN Usage)
 
 **Add any asset to your project in seconds:**
@@ -86,6 +85,7 @@ README.md
 ```
 
 ---
+[![](https://data.jsdelivr.com/v1/package/gh/njbm/assets/badge)](https://www.jsdelivr.com/package/gh/njbm/assets)
 
 ## 👨‍💻 Maintainer
 
