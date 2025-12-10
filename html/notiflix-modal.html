@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Notiflix Confirm Modal</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notiflix@3.2.6/dist/notiflix-3.2.6.min.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding: 40px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            max-width: 600px;
+            width: 100%;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .button-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .demo-btn {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: white;
+        }
+
+        .demo-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .btn-modern {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .btn-danger {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+
+        .btn-success {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+
+        .btn-dark {
+            background: linear-gradient(135deg, #434343 0%, #000000 100%);
+        }
+
+        /* Custom Notiflix Styles */
+        .notiflix-confirm {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Custom Notiflix Confirm Modals</h1>
+        <p style="text-align: center; color: #666; margin-bottom: 30px;">
+            Click the buttons below to see different custom confirm modal designs
+        </p>
+        
+        <div class="button-grid">
+            <button class="demo-btn btn-modern" onclick="modernConfirm()">Modern Design</button>
+            <button class="demo-btn btn-danger" onclick="deleteConfirm()">Delete Confirm</button>
+            <button class="demo-btn btn-success" onclick="successConfirm()">Success Style</button>
+            <button class="demo-btn btn-dark" onclick="darkConfirm()">Dark Mode</button>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/notiflix@3.2.6/dist/notiflix-3.2.6.min.js"></script>
+    <script>
+        // Modern Design Confirm
+        function modernConfirm() {
+            Notiflix.Confirm.show(
+                'Modern Confirmation',
+                'Are you sure you want to proceed with this action?',
+                'Yes, Continue',
+                'Cancel',
+                function okCb() {
+                    Notiflix.Notify.success('Action confirmed!');
+                },
+                function cancelCb() {
+                    Notiflix.Notify.info('Action cancelled');
+                },
+                {
+                    width: '400px',
+                    borderRadius: '20px',
+                    titleColor: '#667eea',
+                    messageColor: '#555',
+                    okButtonBackground: '#667eea',
+                    okButtonColor: '#fff',
+                    cancelButtonBackground: '#e0e0e0',
+                    cancelButtonColor: '#333',
+                    buttonsFontSize: '16px',
+                    buttonsMaxLength: '50',
+                    cssAnimationStyle: 'zoom',
+                    cssAnimationDuration: 300,
+                    backOverlay: true,
+                    backOverlayColor: 'rgba(0,0,0,0.5)',
+                    plainText: false,
+                }
+            );
+        }
+
+        // Delete Confirmation
+        function deleteConfirm() {
+            Notiflix.Confirm.show(
+                '⚠️ Delete Confirmation',
+                'This action cannot be undone. Are you absolutely sure you want to delete this item?',
+                'Delete',
+                'Keep It',
+                function okCb() {
+                    Notiflix.Notify.failure('Item deleted');
+                },
+                function cancelCb() {
+                    Notiflix.Notify.info('Deletion cancelled');
+                },
+                {
+                    width: '450px',
+                    borderRadius: '15px',
+                    titleColor: '#f5576c',
+                    titleFontSize: '22px',
+                    messageColor: '#444',
+                    messageFontSize: '16px',
+                    okButtonBackground: '#f5576c',
+                    okButtonColor: '#fff',
+                    cancelButtonBackground: '#4facfe',
+                    cancelButtonColor: '#fff',
+                    buttonsBorderRadius: '8px',
+                    cssAnimationStyle: 'fade',
+                    cssAnimationDuration: 400,
+                    backOverlay: true,
+                    backOverlayColor: 'rgba(245, 87, 108, 0.2)',
+                }
+            );
+        }
+
+        // Success Style Confirm
+        function successConfirm() {
+            Notiflix.Confirm.show(
+                '✓ Confirm Action',
+                'Everything looks good! Ready to proceed?',
+                'Proceed',
+                'Not Yet',
+                function okCb() {
+                    Notiflix.Notify.success('Successfully completed!');
+                },
+                function cancelCb() {
+                    Notiflix.Notify.warning('Action postponed');
+                },
+                {
+                    width: '420px',
+                    borderRadius: '25px',
+                    titleColor: '#00f2fe',
+                    messageColor: '#666',
+                    okButtonBackground: 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)',
+                    okButtonColor: '#fff',
+                    cancelButtonBackground: '#f0f0f0',
+                    cancelButtonColor: '#333',
+                    buttonsBorderRadius: '50px',
+                    buttonsFontSize: '15px',
+                    cssAnimationStyle: 'zoom',
+                    backOverlay: true,
+                    backOverlayColor: 'rgba(79, 172, 254, 0.15)',
+                }
+            );
+        }
+
+        // Dark Mode Confirm
+        function darkConfirm() {
+            Notiflix.Confirm.show(
+                'Dark Mode Confirm',
+                'Experience the elegant dark theme confirmation modal',
+                'Confirm',
+                'Dismiss',
+                function okCb() {
+                    Notiflix.Notify.success('Confirmed in dark mode!');
+                },
+                function cancelCb() {
+                    Notiflix.Notify.info('Dismissed');
+                },
+                {
+                    width: '440px',
+                    borderRadius: '12px',
+                    backgroundColor: '#1a1a1a',
+                    titleColor: '#ffffff',
+                    messageColor: '#d0d0d0',
+                    okButtonBackground: '#ffffff',
+                    okButtonColor: '#000000',
+                    cancelButtonBackground: '#333333',
+                    cancelButtonColor: '#ffffff',
+                    buttonsBorderRadius: '6px',
+                    cssAnimationStyle: 'fade',
+                    cssAnimationDuration: 350,
+                    backOverlay: true,
+                    backOverlayColor: 'rgba(0,0,0,0.7)',
+                }
+            );
+        }
+
+        // Initialize Notiflix default settings
+        Notiflix.Confirm.init({
+            className: 'notiflix-confirm',
+            distance: '10px',
+            useGoogleFont: false,
+        });
+    </script>
+</body>
+</html>

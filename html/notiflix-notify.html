@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Notiflix Toast Notifications</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notiflix@3.2.6/dist/notiflix-3.2.6.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            padding: 40px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container {
+            background: white;
+            padding: 50px;
+            border-radius: 24px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            max-width: 700px;
+            width: 100%;
+        }
+
+        h1 {
+            color: #1a1a1a;
+            margin-bottom: 15px;
+            text-align: center;
+            font-size: 32px;
+            font-weight: 700;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 40px;
+            font-size: 16px;
+        }
+
+        .button-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .demo-btn {
+            padding: 18px 30px;
+            border: none;
+            border-radius: 12px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .demo-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255,255,255,0.1);
+            transform: translateX(-100%);
+            transition: transform 0.3s;
+        }
+
+        .demo-btn:hover::before {
+            transform: translateX(0);
+        }
+
+        .demo-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+        }
+
+        .demo-btn:active {
+            transform: translateY(-1px);
+        }
+
+        .btn-success {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .btn-error {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+
+        .btn-warning {
+            background: linear-gradient(135deg, #ffa726 0%, #fb8c00 100%);
+        }
+
+        .btn-info {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+
+        /* Custom Notiflix Toast Styles - Vue-like Design */
+        #NotiflixNotifyWrap {
+            width: auto !important;
+            max-width: 500px !important;
+            pointer-events: none !important;
+            top: 50% !important;
+            left: 50% !important;
+            right: auto !important;
+            bottom: auto !important;
+            transform: translate(-50%, -50%) !important;
+        }
+
+        .notiflix-notify {
+            pointer-events: auto !important;
+            padding: 20px 24px !important;
+            border-radius: 16px !important;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2), 0 2px 8px rgba(0,0,0,0.1) !important;
+            margin: 12px 0 !important;
+            min-width: 350px !important;
+            font-size: 15px !important;
+            font-weight: 500 !important;
+            line-height: 1.6 !important;
+            backdrop-filter: blur(10px) !important;
+            border: 1px solid rgba(255,255,255,0.2) !important;
+            position: relative !important;
+            overflow: hidden !important;
+        }
+
+        /* Success Style */
+        .notiflix-notify-success {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+            color: #ffffff !important;
+        }
+
+        .notiflix-notify-success::before {
+            content: '✓';
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 24px;
+            font-weight: bold;
+            opacity: 0.3;
+        }
+
+        .notiflix-notify-success {
+            padding-left: 55px !important;
+        }
+
+        /* Error Style */
+        .notiflix-notify-failure {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%) !important;
+            color: #ffffff !important;
+        }
+
+        .notiflix-notify-failure::before {
+            content: '✕';
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 24px;
+            font-weight: bold;
+            opacity: 0.3;
+        }
+
+        .notiflix-notify-failure {
+            padding-left: 55px !important;
+        }
+
+        /* Warning Style */
+        .notiflix-notify-warning {
+            background: linear-gradient(135deg, #ffa726 0%, #fb8c00 100%) !important;
+            color: #ffffff !important;
+        }
+
+        .notiflix-notify-warning::before {
+            content: '⚠';
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 24px;
+            font-weight: bold;
+            opacity: 0.3;
+        }
+
+        .notiflix-notify-warning {
+            padding-left: 55px !important;
+        }
+
+        /* Info Style */
+        .notiflix-notify-info {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%) !important;
+            color: #ffffff !important;
+        }
+
+        .notiflix-notify-info::before {
+            content: 'ℹ';
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 24px;
+            font-weight: bold;
+            opacity: 0.3;
+        }
+
+        .notiflix-notify-info {
+            padding-left: 55px !important;
+        }
+
+        /* Animation shimmer effect */
+        .notiflix-notify::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { left: -100%; }
+            50% { left: 100%; }
+            100% { left: 100%; }
+        }
+
+        /* Close button enhancement */
+        .notiflix-notify-close {
+            background: rgba(255,255,255,0.2) !important;
+            border-radius: 50% !important;
+            width: 28px !important;
+            height: 28px !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            transition: all 0.2s !important;
+            backdrop-filter: blur(5px) !important;
+        }
+
+        .notiflix-notify-close:hover {
+            background: rgba(255,255,255,0.3) !important;
+            transform: rotate(90deg) !important;
+        }
+
+        /* Progress bar */
+        .notiflix-notify {
+            border-bottom: 3px solid rgba(255,255,255,0.3) !important;
+        }
+
+        @media (max-width: 600px) {
+            .notiflix-notify {
+                min-width: 300px !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎨 Gorgeous Toast Notifications</h1>
+        <p class="subtitle">Vue-inspired center toast design with glassmorphism effects</p>
+        
+        <div class="button-grid">
+            <button class="demo-btn btn-success" onclick="showSuccess()">
+                Success
+            </button>
+            <button class="demo-btn btn-error" onclick="showError()">
+                Error
+            </button>
+            <button class="demo-btn btn-warning" onclick="showWarning()">
+                Warning
+            </button>
+            <button class="demo-btn btn-info" onclick="showInfo()">
+                Info
+            </button>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/notiflix@3.2.6/dist/notiflix-3.2.6.min.js"></script>
+    <script>
+        // Initialize Notiflix with custom settings
+        Notiflix.Notify.init({
+            width: '400px',
+            position: 'center-top',
+            distance: '15px',
+            opacity: 1,
+            borderRadius: '16px',
+            rtl: false,
+            timeout: 3500,
+            messageMaxLength: 300,
+            backOverlay: false,
+            backOverlayColor: 'rgba(0,0,0,0.5)',
+            plainText: false,
+            showOnlyTheLastOne: false,
+            clickToClose: true,
+            pauseOnHover: true,
+            ID: 'NotiflixNotify',
+            className: 'notiflix-notify',
+            zindex: 4001,
+            fontFamily: 'inherit',
+            fontSize: '15px',
+            cssAnimation: true,
+            cssAnimationDuration: 400,
+            cssAnimationStyle: 'from-top',
+            closeButton: true,
+            useIcon: false,
+            useFontAwesome: false,
+            fontAwesomeIconStyle: 'basic',
+            fontAwesomeIconSize: '34px',
+
+            success: {
+                background: '#667eea',
+                textColor: '#ffffff',
+                childClassName: 'notiflix-notify-success',
+                notiflixIconColor: 'rgba(255,255,255,0.3)',
+                fontAwesomeClassName: 'fas fa-check-circle',
+                fontAwesomeIconColor: 'rgba(255,255,255,0.3)',
+                backOverlayColor: 'rgba(102,126,234,0.2)',
+            },
+
+            failure: {
+                background: '#f5576c',
+                textColor: '#ffffff',
+                childClassName: 'notiflix-notify-failure',
+                notiflixIconColor: 'rgba(255,255,255,0.3)',
+                fontAwesomeClassName: 'fas fa-times-circle',
+                fontAwesomeIconColor: 'rgba(255,255,255,0.3)',
+                backOverlayColor: 'rgba(245,87,108,0.2)',
+            },
+
+            warning: {
+                background: '#ffa726',
+                textColor: '#ffffff',
+                childClassName: 'notiflix-notify-warning',
+                notiflixIconColor: 'rgba(255,255,255,0.3)',
+                fontAwesomeClassName: 'fas fa-exclamation-circle',
+                fontAwesomeIconColor: 'rgba(255,255,255,0.3)',
+                backOverlayColor: 'rgba(255,167,38,0.2)',
+            },
+
+            info: {
+                background: '#4facfe',
+                textColor: '#ffffff',
+                childClassName: 'notiflix-notify-info',
+                notiflixIconColor: 'rgba(255,255,255,0.3)',
+                fontAwesomeClassName: 'fas fa-info-circle',
+                fontAwesomeIconColor: 'rgba(255,255,255,0.3)',
+                backOverlayColor: 'rgba(79,172,254,0.2)',
+            },
+        });
+
+        // Toast notification functions
+        function showSuccess() {
+            Notiflix.Notify.success('Operation completed successfully! Your changes have been saved.');
+        }
+
+        function showError() {
+            Notiflix.Notify.failure('Oops! Something went wrong. Please try again later.');
+        }
+
+        function showWarning() {
+            Notiflix.Notify.warning('Warning: This action requires your attention before proceeding.');
+        }
+
+        function showInfo() {
+            Notiflix.Notify.info('Did you know? You can click on any notification to dismiss it.');
+        }
+    </script>
+</body>
+</html>

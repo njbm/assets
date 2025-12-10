@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notiflix@3.2.6/dist/notiflix-3.2.6.min.css">
+    <title>Notiflix Custom - Demo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            padding: 50px;
+            border-radius: 24px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        h1 {
+            color: #1a1a1a;
+            margin-bottom: 15px;
+            font-size: 36px;
+            font-weight: 700;
+        }
+
+        .subtitle {
+            color: #666;
+            margin-bottom: 40px;
+            font-size: 18px;
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
+
+        .section h2 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 24px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #667eea;
+        }
+
+        .button-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .demo-btn {
+            padding: 18px 30px;
+            border: none;
+            border-radius: 12px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            color: white;
+        }
+
+        .demo-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+        }
+
+        .btn-success { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+        .btn-error { background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); }
+        .btn-warning { background: linear-gradient(135deg, #ffa726 0%, #fb8c00 100%); }
+        .btn-info { background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); }
+        .btn-delete { background: linear-gradient(135deg, #ee0979 0%, #ff6a00 100%); }
+        .btn-loading { background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%); }
+
+        .code-block {
+            background: #f5f5f5;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            overflow-x: auto;
+            border-left: 4px solid #667eea;
+        }
+
+        .badge {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎨 Notiflix Custom</h1>
+        <p class="subtitle">Beautiful, Vue-inspired notifications with simple API</p>
+
+        <!-- Installation Section -->
+        <div class="section">
+            <h2>📦 Installation</h2>
+            <div class="code-block">
+&lt;!-- Step 1: Include Notiflix --&gt;
+&lt;script src="https://cdn.jsdelivr.net/npm/notiflix@3.2.6/dist/notiflix-3.2.6.min.js"&gt;&lt;/script&gt;
+
+&lt;!-- Step 2: Include Notiflix Custom --&gt;
+&lt;script src="https://cdn.jsdelivr.net/gh/yourusername/yourrepo@main/assets/notiflix-custom.js"&gt;&lt;/script&gt;
+            </div>
+        </div>
+
+        <!-- Notifications Section -->
+        <div class="section">
+            <h2>🔔 Notifications</h2>
+            <span class="badge">Easy to Use</span>
+            <div class="button-grid">
+                <button class="demo-btn btn-success" onclick="notifySuccess('Operation completed successfully!')">
+                    Success
+                </button>
+                <button class="demo-btn btn-error" onclick="notifyError('Something went wrong!')">
+                    Error
+                </button>
+                <button class="demo-btn btn-warning" onclick="notifyWarning('Please be careful!')">
+                    Warning
+                </button>
+                <button class="demo-btn btn-info" onclick="notifyInfo('Here is some useful information')">
+                    Info
+                </button>
+            </div>
+            <div class="code-block">
+// Basic usage
+notifySuccess('Operation completed!');
+notifyError('Something went wrong!');
+notifyWarning('Please be careful!');
+notifyInfo('Here is some info');
+
+// With options
+notifySuccess('Saved!', { timeout: 5000 });
+            </div>
+        </div>
+
+        <!-- Confirm Modals Section -->
+        <div class="section">
+            <h2>💬 Confirm Modals</h2>
+            <span class="badge">Callbacks</span>
+            <div class="button-grid">
+                <button class="demo-btn btn-info" onclick="showBasicConfirm()">
+                    Basic Confirm
+                </button>
+                <button class="demo-btn btn-delete" onclick="showDeleteConfirm()">
+                    Delete Confirm
+                </button>
+                <button class="demo-btn btn-success" onclick="showActionConfirm()">
+                    Action Confirm
+                </button>
+            </div>
+            <div class="code-block">
+// Basic confirm
+confirmModal(
+    'Are you sure?',
+    () => notifySuccess('Confirmed!'),
+    () => notifyInfo('Cancelled')
+);
+
+// Delete confirm
+confirmDelete(
+    'Delete this item?',
+    () => notifySuccess('Deleted!'),
+    () => notifyInfo('Cancelled')
+);
+
+// Action confirm
+confirmAction(
+    'Proceed with action?',
+    () => notifySuccess('Done!')
+);
+            </div>
+        </div>
+
+        <!-- Loading Section -->
+        <div class="section">
+            <h2>⏳ Loading Indicators</h2>
+            <span class="badge">Async Support</span>
+            <div class="button-grid">
+                <button class="demo-btn btn-loading" onclick="demoLoading()">
+                    Show Loading
+                </button>
+            </div>
+            <div class="code-block">
+// Show loading
+showLoading('Processing...');
+
+// Hide loading
+hideLoading();
+
+// With delay
+hideLoading(1000); // Hide after 1 second
+            </div>
+        </div>
+
+        <!-- Advanced Usage Section -->
+        <div class="section">
+            <h2>🚀 Advanced Usage</h2>
+            <div class="code-block">
+// Custom options for notifications
+notifySuccess('Data saved!', {
+    timeout: 5000,
+    clickToClose: true,
+    pauseOnHover: true
+});
+
+// Custom confirm modal
+confirmModal(
+    'Custom Title',
+    'Custom message here',
+    () => console.log('Confirmed'),
+    () => console.log('Cancelled'),
+    {
+        okButtonText: 'Yes, Do It',
+        cancelButtonText: 'No, Cancel',
+        width: '500px',
+        titleColor: '#667eea'
+    }
+);
+            </div>
+        </div>
+    </div>
+
+    <!-- Include Notiflix -->
+    <script src="https://cdn.jsdelivr.net/npm/notiflix@3.2.6/dist/notiflix-3.2.6.min.js"></script>
+    
+    <!-- Include YOUR custom script - Update this path after uploading to GitHub -->
+    <!-- <script src="https://cdn.jsdelivr.net/gh/njbm/assets@main/notiflix/notiflix-custom.js"></script> -->
+    <script src="notiflix-custom.js"></script>
+
+    <script>
+        // Demo functions
+        function showBasicConfirm() {
+            confirmModal(
+                'Are you sure?',
+                'This is a basic confirmation modal',
+                () => notifySuccess('You confirmed!'),
+                () => notifyInfo('You cancelled')
+            );
+        }
+
+        function showDeleteConfirm() {
+            confirmDelete(
+                'This will permanently delete the item. Are you sure?',
+                () => notifySuccess('Item deleted successfully!'),
+                () => notifyInfo('Deletion cancelled')
+            );
+        }
+
+        function showActionConfirm() {
+            confirmAction(
+                'Do you want to proceed with this action?',
+                () => notifySuccess('Action completed!'),
+                () => notifyInfo('Action cancelled')
+            );
+        }
+
+        function demoLoading() {
+            showLoading('Processing your request...');
+            
+            // Simulate async operation
+            setTimeout(() => {
+                hideLoading();
+                notifySuccess('Operation completed!');
+            }, 2500);
+        }
+    </script>
+</body>
+</html>
